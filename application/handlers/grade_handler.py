@@ -34,8 +34,16 @@ messages_for_grades = [
     },
     {
         'min': 4.7499,
+        'max': 5.2499,
+        'description': 'Só repete o que fez até agora.',
+        'badge_class': 'badge badge-warning',
+        'alert_class': 'alert alert-block',
+    },
+    ,
+    {
+        'min': 5.2499,
         'max': 5.99,
-        'description': 'É, você só precisa fazer o que',
+        'description': 'Você poderia estar pior, mas pra quem tá na final, tá até bem.',
         'badge_class': 'badge badge-warning',
         'alert_class': 'alert alert-block',
     },
