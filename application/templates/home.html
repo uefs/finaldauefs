@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Tô na Final da UEFS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+      body { padding-top: 60px; /* 60px to make the container go all the way
+      to the bottom of the topbar */ }
+
+      .jumbotron {
+        margin: 30px 0;
+      }
+
+      .badge {
+        padding: 20px 20px;
+        font-size: 50px;
+        font-weight: bold;
+        white-space: nowrap;
+        color: #ffffff;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+      }
+   </style>
+   <script type="text/javascript">
+    var query_url = '/average_grade';
+
+    function update_info(data){
+      if (data.required_grade == -1){
+        $("#required_grade").text("");
+      }
+      else {
+        $("#required_grade").text(data.required_grade);
+      }
+      $("#required_grade").removeClass().addClass(data.badge_class);
+      $("#description").removeClass().addClass(data.alert_class)
+      $("#description > p:first").text(data.description)
+    }
+
+    $(document).ready(function() {
+
+      $("#about").click(function(){
+         $('#modal_about').modal('show');
+      });
+
+      $("#face_my_destiny").click(function() {
+        var avg = $('#average').val();
+        $.ajax({
+          type: "GET",
+          cache: false,
+          url: query_url,
+          data: {avg: avg},
+          success: function(data, textStatus, jqXHR){
+            update_info(data);
+          },
+          dataType: 'json'
+        });
+      });
+    });
+   </script>
+  </head>
+  <body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Tô de final</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about" id="about">Sobre</a></li>
+              <li></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="jumbotron text-center">
+          <h1>Então você ficou de final na UEFS...</h1>
+          <p class="lead">... e não sabe quantos pontos precisa pra passar? Informe sua média e descubra, pobre infeliz.</p>
+          <input type="text" id="average" placeholder="Média"><br />
+          <a class="btn btn-large btn-danger" href="#" id="face_my_destiny">Enfrentar meu destino</a>
+
+          <br />
+          <br />
+
+          <p class="text-center">Você precisa tirar pelo menos...&nbsp;</p>
+          <p><span class="badge badge-important" id="required_grade"></span></p>
+          <div id="description" class="alert alert-block">
+            <p></p>
+          </div>  
+
+      </div>
+    </div> <!-- /container -->
+
+    <div id="modal_about" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>"Tô na final"</h3>
+      </div>
+      <div class="modal-body">
+        <p>O "Tô na final" foi feito com o objetivo de ajudar os calouros que vão pra final e não sabem fazer a maldita conta da nota mínima que precisam tirar na prova final da UEFS.</p>
+
+        <p>Na verdade, é tudo bem simples: se você tá com média menor que <b>7</b> e maior que <b>3</b>, bem-vindo à prova final! Se sua média tá menor que <b>3</b>, pode ir pro Fifó, porque nem pra final você vai.</p>
+
+        <p>Mas tem um detalhe! Seja a sua média da disciplina MD e a nota da final mínima NF; a nota da sua prova final precisa satisfazer à seguinte condição: (0,6 * MD) + (0,4 * NF) >= 5. Sim, é uma soma ponderada, e a nota da final tem menor peso que a média. Então uma nota alta na prova final pode não te ajudar muito se você não foi bem durante o semestre e tá preocupado em ter um boletim bacana.</p>
+
+        <p>Uma outra forma de escrever a inequação anterior é NF >= 12,5 - (1,5 * MD). Como é uma inequação, podemos assumir uma nota final mínima (NFm) com a equação: NFm = 12,5 - (1,5 * MD).</p>
+
+        <p>Há um último detalhe importante: mesmo que você vá pra prova final precisando de menos de 3 pontos, você precisa tirar ao menos 3. Não importa se a soma ponderada der uma nota maior que 5, uma nota mínima de 3 é mais uma das regras da nota da prova final. Você podia estar precisando de 2 décimos pra passar, se tirar menos de 3 na final, até semestre que vem nesta mesma disciplina.</p>
+        
+      </div>
+      <div class="modal-footer">
+        <p>Feito por <a href="http://www.facebook.com/cacovsky">Caco</a></p>
+      </div>
+    </div>
+
+
+  </body>
+</html>
