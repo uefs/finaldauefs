@@ -39,7 +39,6 @@ messages_for_grades = [
         'badge_class': 'badge badge-warning',
         'alert_class': 'alert alert-block',
     },
-    ,
     {
         'min': 5.2499,
         'max': 5.99,
