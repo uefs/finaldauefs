@@ -1,6 +1,6 @@
 #Tô na Final
 
-This app is intended to be a small guide for UEFS students that don't know the criteria for final exams.
+This app is intended to be a small guide for UEFS students that don't know UEFS' criteria for final exams.
 
 Code is terrible and untested, but seems to work.
 
