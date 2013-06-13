@@ -5,7 +5,7 @@ from flask import g, redirect, request, jsonify
 
 err_message = {
     'required_grade': '-1',
-    'description': 'Média não reconhecida',
+    'description': 'Armaria, tá de onda, é, playboy? Bota uma nota certa aí!',
     'badge_class': 'badge badge-important',
     'alert_class': 'alert alert-error'
 }
