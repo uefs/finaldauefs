@@ -10,6 +10,14 @@ err_message = {
     'alert_class': 'alert alert-error'
 }
 
+answer_to_life = {
+    'hide_elements': True,
+    'required_grade': 'Não entre em pânico.',
+    'description': 'Não entre em pânico.',
+    'badge_class': 'badge badge-important',
+    'alert_class': 'alert alert-error'
+}
+
 messages_for_grades = [
     {
         'min': 3,
@@ -83,10 +91,12 @@ def get_message_for_average_grade(avg):
     
     avg = float(avg)
 
-    if avg > 10 or avg < 0:
+    if avg == 42:
+        return answer_to_life
+    elif avg > 10 or avg < 0:
         return err_message
 
-    required_grade = get_required_grade_for_average(avg) 
+    required_grade = get_required_grade_for_average(avg)
     if avg < 3:
         message['description'] = 'É, mermão... mais sorte da próxima vez!'
         message['required_grade'] = 'Mais de 9 mil...'

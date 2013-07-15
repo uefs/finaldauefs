@@ -53,6 +53,17 @@
       else {
         $("#required_grade").text(data.required_grade);
       }
+
+      var hide_elements = data.hide_elements && data.hide_elements == true;
+      if (hide_elements){
+        $("#description").hide();
+        $("#you_need_text").hide();
+      }
+      else{
+        $("#description").show();
+        $("#you_need_text").show();
+      }
+
       $("#required_grade").removeClass().addClass(data.badge_class);
       $("#description").removeClass().addClass(data.alert_class)
       $("#description > p:first").text(data.description)
@@ -111,7 +122,7 @@
           <br />
           <br />
 
-          <p class="text-center">Você precisa de...&nbsp;</p>
+          <p id="you_need_text" class="text-center">Você precisa de...&nbsp;</p>
           <p><span class="badge badge-important" id="required_grade"></span></p>
           <div id="description" class="alert alert-block">
             <p></p>
